@@ -1,2 +1,2 @@
 # dashboard-sinistro
-Dashboard de Frotas voltado a célula de sinistro.
+Dashboard para análise de dados e indicadores de sinistros de uma frota de veículos.

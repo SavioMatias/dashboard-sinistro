@@ -1,0 +1,6 @@
+[theme]
+base="light"
+primaryColor="#1E88E5" # Azul principal
+backgroundColor="#fdfdfdc7" # Fundo cinza bem claro (quase branco)
+secondaryBackgroundColor="#ffffffc2" # Fundo branco para os filtros e gráficos
+textColor="#061bda"

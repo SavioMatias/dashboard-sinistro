@@ -2,7 +2,6 @@ import plotly.express as px
 import pandas as pd
 
 def criar_grafico_estados(df):
-    """Gera um gráfico de barras com o volume de sinistros por estado."""
     df_agrupado = df['estado'].value_counts().reset_index()
     df_agrupado.columns = ['Estado', 'Quantidade']
     
@@ -15,11 +14,16 @@ def criar_grafico_estados(df):
         color_continuous_scale='Blues',
         text_auto=True
     )
-    fig.update_layout(xaxis_title="", yaxis_title="Quantidade", showlegend=False)
+    fig.update_traces(textposition='outside')
+
+    fig.update_layout(
+        xaxis_title="",
+        yaxis_title="Quantidade",
+        showlegend=False
+    )
     return fig
 
 def criar_grafico_gravidade(df):
-    """Gera um gráfico de rosca com o prejuízo por gravidade."""
     df_agrupado = df.groupby('gravidade')['valor_prejuizo'].sum().reset_index()
     
     fig = px.pie(
@@ -27,14 +31,12 @@ def criar_grafico_gravidade(df):
         values='valor_prejuizo', 
         names='gravidade', 
         title='Prejuízo Total por Gravidade',
-        hole=0.4, # Isso transforma a pizza em uma rosca (donut)
-        color_discrete_sequence=["#2563EB"]
+        hole=0.4,
+        color_discrete_sequence=px.colors.qualitative.Set2
     )
     return fig
 
 def criar_grafico_tipo_sinistro(df):
-    """Gera um gráfico de barras com o volume de sinistros por tipo."""
-    # CORREÇÃO AQUI: Mudamos 'tipo_sinistro' para 'tipo_acidente'
     df_agrupado = df['tipo_acidente'].value_counts().reset_index()
     df_agrupado.columns = ['Tipo de Sinistro', 'Quantidade']
     
@@ -47,7 +49,12 @@ def criar_grafico_tipo_sinistro(df):
         color_continuous_scale='Blues',
         text_auto=True
     )
-    fig.update_layout(xaxis_title="", yaxis_title="Quantidade", showlegend=False)
+    fig.update_traces(textposition='outside')
+    fig.update_layout(
+        xaxis_title="",
+        yaxis_title="Quantidade",
+        showlegend=False
+    )
     return fig
 
 
@@ -87,6 +94,7 @@ def criar_grafico_evolucao_mensal(df):
     )
 
     fig.update_traces(
+        marker=dict(size=10),
         textposition="top center"
     )
 
